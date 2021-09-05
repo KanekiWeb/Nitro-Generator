@@ -1,4 +1,4 @@
-import os, requests, random, threading, json, time
+import os, requests, random, threading, json, time, multiprocessing
 from colorama import Fore
 
 # Credit to Pycenter by billythegoat356
@@ -38,10 +38,7 @@ class Console():
         return int(proxies_list)
 
 
-class Worker(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-              
+class Worker():              
     def random_proxy(self):
         with open('config/proxies.txt', 'r') as f:
             proxies = [line.strip() for line in f]
@@ -60,7 +57,7 @@ class Worker(threading.Thread):
     def run(self):
         self.code = "".join(random.choice("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890") for _ in range(16))
         try:
-            req = requests.get(f'https://discordapp.com/api/v6/entitlements/gift-codes/{self.code}?with_application=false&with_subscription_plan=true', proxies={'http': self.config("proxies")+'://'+self.random_proxy(),'https': self.config("proxies")+'://'+self.random_proxy()}, timeout=3)
+            req = requests.get(f'https://discordapp.com/api/v6/entitlements/gift-codes/{self.code}?with_application=false&with_subscription_plan=true', proxies={'http': self.config("proxies")+'://'+self.random_proxy(),'https': self.config("proxies")+'://'+self.random_proxy()}, timeout=1)
             
             if req.status_code == 200:
                 Console().printer(Fore.LIGHTGREEN_EX, " Valid ", self.code)
@@ -85,13 +82,14 @@ class Worker(threading.Thread):
             os.system('pause >nul')
             exit()
         except:
+            # Console().printer(Fore.LIGHTRED_EX, "Invalid", self.code)
             Console().printer(Fore.LIGHTYELLOW_EX, " Retry ", self.code)
         
 if __name__ == "__main__":
     Console().ui()
     print(" "+Fore.CYAN + str(Console().proxies_count()) + Fore.RESET + " Total proxies loaded...\n\n")
+    DNG = Worker()
     
     while True:
         if threading.active_count() <= int(Worker().config("thread")):  
-            DNG = Worker()
-            DNG.run()
+            threading.Thread(target=DNG.run(), args=()).start()
