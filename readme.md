@@ -41,7 +41,7 @@
 
 ### 📜 License & Warning
 - Make for education propose only
-- Uder licensed MIT MIT License.
+- Under licensed MIT MIT License.
 
 ##  
 
