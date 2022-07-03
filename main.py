@@ -18,7 +18,7 @@ class Console():
 ██████╗ ███╗   ██╗ ██████╗ 
 ██╔══██╗████╗  ██║██╔════╝            ~ Discord Nitro Generator ~
 ██║  ██║██╔██╗ ██║██║  ███╗     
-██║  ██║██║╚██╗██║██║   ██║     github.com/kanekiWeb ~ discord.gg/kaneki
+██║  ██║██║╚██╗██║██║   ██║     github.com/kanekiWeb ~ skulldev.ga
 ██████╔╝██║ ╚████║╚██████╔╝ 
 ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ \n\n
               """).replace('█', Fore.CYAN+"█"+Fore.RESET).replace('~', Fore.CYAN+"~"+Fore.RESET).replace('-', Fore.CYAN+"-"+Fore.RESET))
