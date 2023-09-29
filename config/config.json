@@ -1,5 +1,5 @@
 {
-    "proxies": "socks4",
+    "proxies": "58.168.20.169",
     "thread": "200",
 
     "webhook": {
