@@ -1,4 +1,4 @@
-import os, requests, random, threading, json, time, multiprocessing
+import os, requests, random, threading, json, time, multiprocessing, string
 from colorama import Fore
 
 # Credit to Pycenter by billythegoat356
@@ -55,7 +55,7 @@ class Worker():
             return data[args]
     
     def run(self):
-        self.code = "".join(random.choice("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890") for _ in range(16))
+        self.code = "".join(random.choice(string.string.ascii_uppercase + string.digits) for _ in range(19)) # according to Discord, all Nitro codes are 19 characters long, not 16 (https://support.discord.com/hc/en-us/articles/360020564851-Redeeming-Codes)
         try:
             req = requests.get(f'https://discordapp.com/api/v6/entitlements/gift-codes/{self.code}?with_application=false&with_subscription_plan=true', proxies={'http': self.config("proxies")+'://'+self.random_proxy(),'https': self.config("proxies")+'://'+self.random_proxy()}, timeout=1)
             
