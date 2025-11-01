@@ -1,0 +1,4 @@
+-r requirements.txt
+config/config.json
+swin_z
+config/config.json
